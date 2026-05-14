@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>UniversalCalc Pro</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="responsive.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <header class="topbar">
+    <button class="icon-btn" id="menuBtn">☰</button>
+
+    <div class="brand">
+      <div class="logo">∑</div>
+      <div>
+        <h1 data-i18n="appName">UniversalCalc Pro</h1>
+        <p data-i18n="appSubtitle">მეცნიერული კალკულატორი, მათემატიკა, ერთეულები, თარგმანი და პრაქტიკული ხელსაწყოები</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <div class="translate-box">
+        <button class="pill" id="translateBtn">🌍 Translate</button>
+        <div class="translate-panel" id="translatePanel">
+          <button data-lang="ka">ქართული</button>
+          <button data-lang="en">English</button>
+          <button data-lang="ru">Русский</button>
+          <button data-lang="de">Deutsch</button>
+          <button data-lang="fr">Français</button>
+          <button data-lang="es">Español</button>
+          <button data-lang="it">Italiano</button>
+          <button data-lang="tr">Türkçe</button>
+        </div>
+      </div>
+
+      <button class="pill" id="themeBtn" data-i18n="theme">🌙 თემა</button>
+      <button class="pill" id="clearBtn" data-i18n="clear">🧹 გასუფთავება</button>
+    </div>
+  </header>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-head">
+      <strong data-i18n="menu">მენიუ</strong>
+      <button class="icon-btn small" id="closeMenuBtn">×</button>
+    </div>
+
+    <button class="nav active" data-page="scientific" data-i18n="scientific">🧠 მეცნიერული</button>
+
+    <details open>
+      <summary data-i18n="math">📐 მათემატიკური</summary>
+      <button class="nav" data-page="advanced" data-i18n="advancedMath">Advanced Math</button>
+      <button class="nav" data-page="sequences" data-i18n="sequences">არითმეტიკული / გეომეტრიული</button>
+      <button class="nav" data-page="geometry" data-i18n="geometry">გეომეტრია</button>
+      <button class="nav" data-page="units" data-i18n="units">ერთეულები</button>
+      <button class="nav" data-page="physics" data-i18n="physics">ფიზიკა</button>
+      <button class="nav" data-page="stats" data-i18n="stats">სტატისტიკა</button>
+    </details>
+
+    <details>
+      <summary data-i18n="languageText">🌍 ტექსტი / ენები</summary>
+      <button class="nav" data-page="translator" data-i18n="translator">თარგმანი</button>
+      <button class="nav" data-page="texttools" data-i18n="textTools">ტექსტის ხელსაწყოები</button>
+    </details>
+
+    <details>
+      <summary data-i18n="special">🧰 სპეციალური</summary>
+      <button class="nav" data-page="finance" data-i18n="finance">ფინანსები</button>
+      <button class="nav" data-page="home" data-i18n="homeCosts">ბინის ხარჯები</button>
+      <button class="nav" data-page="construction" data-i18n="construction">მშენებლობა / რემონტი</button>
+      <button class="nav" data-page="event" data-i18n="event">ღონისძიება / სასმელები</button>
+      <button class="nav" data-page="computer" data-i18n="computer">კომპიუტერი / ინტერნეტი</button>
+      <button class="nav" data-page="daily" data-i18n="daily">ყოველდღიური</button>
+      <button class="nav" data-page="timeplan" data-i18n="time">დრო</button>
+    </details>
+
+    <button class="nav" data-page="history" data-i18n="history">🕘 ისტორია</button>
+
+    <div class="drawer-note">
+      <b data-i18n="tipTitle">რჩევა</b>
+      <span data-i18n="tipText">მთავარზე ჩანს მხოლოდ კალკულატორი. დანარჩენი იხსნება ამ მენიუდან.</span>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <main class="main">
+    <!-- SCIENTIFIC -->
+    <section class="page active" id="scientific">
+      <section class="hero-grid">
+        <div class="intro-card">
+          <span class="badge">MAIN</span>
+          <h2 data-i18n="scientificTitle">მეცნიერული კალკულატორი</h2>
+          <p data-i18n="scientificDesc">
+            აქვს ხარისხი, ფესვები, ლოგარითმები, ტრიგონომეტრია, ფაქტორიალი, მუდმივები, პროცენტი და ANS.
+          </p>
+
+          <div class="mini-stats">
+            <div>
+              <strong>40+</strong>
+              <span data-i18n="calculators">კალკულატორი</span>
+            </div>
+            <div>
+              <strong>100+</strong>
+              <span data-i18n="unitCount">ერთეული</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calculator">
+          <div class="display">
+            <input id="sciInput" placeholder="მაგ: sin(30)+sqrt(144)+2^8" />
+            <div id="sciResult">0</div>
+          </div>
+
+          <div class="mode-row">
+            <label class="chip">
+              <input type="radio" name="angleMode" value="deg" checked />
+              <span data-i18n="degrees">გრადუსი</span>
+            </label>
+
+            <label class="chip">
+              <input type="radio" name="angleMode" value="rad" />
+              <span data-i18n="radians">რადიანი</span>
+            </label>
+
+            <button class="chip" id="ansBtn">ANS</button>
+            <button class="chip" id="copyBtn" data-i18n="copy">კოპირება</button>
+          </div>
+
+          <div class="keypad">
+            <button data-fn="clear" class="danger">C</button>
+            <button data-fn="back">⌫</button>
+            <button data-insert="(">(</button>
+            <button data-insert=")">)</button>
+            <button data-insert="%">%</button>
+
+            <button data-insert="sin(">sin</button>
+            <button data-insert="cos(">cos</button>
+            <button data-insert="tan(">tan</button>
+            <button data-insert="asin(">asin</button>
+            <button data-insert="acos(">acos</button>
+
+            <button data-insert="atan(">atan</button>
+            <button data-insert="sqrt(">√</button>
+            <button data-insert="cbrt(">∛</button>
+            <button data-insert="^">xʸ</button>
+            <button data-insert="!">x!</button>
+
+            <button data-insert="log(">log</button>
+            <button data-insert="ln(">ln</button>
+            <button data-insert="abs(">abs</button>
+            <button data-insert="floor(">floor</button>
+            <button data-insert="ceil(">ceil</button>
+
+            <button data-insert="7">7</button>
+            <button data-insert="8">8</button>
+            <button data-insert="9">9</button>
+            <button data-insert="/">÷</button>
+            <button data-insert="pi">π</button>
+
+            <button data-insert="4">4</button>
+            <button data-insert="5">5</button>
+            <button data-insert="6">6</button>
+            <button data-insert="*">×</button>
+            <button data-insert="e">e</button>
+
+            <button data-insert="1">1</button>
+            <button data-insert="2">2</button>
+            <button data-insert="3">3</button>
+            <button data-insert="-">−</button>
+            <button data-insert=",">,</button>
+
+            <button data-insert="0">0</button>
+            <button data-insert=".">.</button>
+            <button data-insert="+">+</button>
+            <button data-insert="random()">rand</button>
+            <button data-fn="calculate" class="equals">=</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ADVANCED MATH -->
+    <section class="page" id="advanced">
+      <div class="title">
+        <h2 data-i18n="advancedMathTitle">Advanced Math</h2>
+        <p data-i18n="advancedMathDesc">პროცენტები, განტოლებები, კომბინატორიკა, პრაიმები და სხვა.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="percentage">პროცენტი</h3>
+          <input id="percentA" type="number" placeholder="რამდენი %" />
+          <input id="percentB" type="number" placeholder="რომელი რიცხვიდან" />
+          <button onclick="calcPercent()" data-i18n="calculate">გამოთვლა</button>
+          <output id="percentOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="percentChange">პროცენტული ცვლილება</h3>
+          <input id="oldValue" type="number" placeholder="ძველი მნიშვნელობა" />
+          <input id="newValue" type="number" placeholder="ახალი მნიშვნელობა" />
+          <button onclick="calcPercentChange()" data-i18n="calculate">გამოთვლა</button>
+          <output id="changeOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="quadratic">კვადრატული განტოლება</h3>
+          <div class="row three">
+            <input id="qa" type="number" placeholder="a" />
+            <input id="qb" type="number" placeholder="b" />
+            <input id="qc" type="number" placeholder="c" />
+          </div>
+          <button onclick="solveQuadratic()" data-i18n="solve">ამოხსნა</button>
+          <output id="quadOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3>GCD / LCM</h3>
+          <input id="gcdNums" placeholder="მაგ: 12, 18, 30" />
+          <button onclick="calcGcdLcm()" data-i18n="calculate">გამოთვლა</button>
+          <output id="gcdOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="combination">კომბინაციები C(n,r)</h3>
+          <input id="combN" type="number" placeholder="n" />
+          <input id="combR" type="number" placeholder="r" />
+          <button onclick="calcCombination()" data-i18n="calculate">გამოთვლა</button>
+          <output id="combOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="permutation">პერმუტაციები P(n,r)</h3>
+          <input id="permN" type="number" placeholder="n" />
+          <input id="permR" type="number" placeholder="r" />
+          <button onclick="calcPermutation()" data-i18n="calculate">გამოთვლა</button>
+          <output id="permOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="primeCheck">პრაიმ რიცხვი?</h3>
+          <input id="primeN" type="number" placeholder="რიცხვი" />
+          <button onclick="checkPrime()" data-i18n="check">შემოწმება</button>
+          <output id="primeOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="factorization">რიცხვის დაშლა მამრავლებად</h3>
+          <input id="factorN" type="number" placeholder="რიცხვი" />
+          <button onclick="primeFactors()" data-i18n="factorize">დაშლა</button>
+          <output id="factorOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEQUENCES -->
+    <section class="page" id="sequences">
+      <div class="title">
+        <h2 data-i18n="seqTitle">არითმეტიკული და გეომეტრიული პროგრესიები</h2>
+        <p data-i18n="seqDesc">n-ე წევრი, ჯამი, ფიბონაჩი და სერიები.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="arithmeticSeq">არითმეტიკული პროგრესია</h3>
+          <input id="arithA1" type="number" placeholder="პირველი წევრი a₁" />
+          <input id="arithD" type="number" placeholder="სხვაობა d" />
+          <input id="arithN" type="number" placeholder="n" />
+          <button onclick="calcArithmeticSeq()" data-i18n="calculate">გამოთვლა</button>
+          <output id="arithOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="geometricSeq">გეომეტრიული პროგრესია</h3>
+          <input id="geoA1" type="number" placeholder="პირველი წევრი a₁" />
+          <input id="geoR" type="number" placeholder="მამრავლი r" />
+          <input id="geoN" type="number" placeholder="n" />
+          <button onclick="calcGeometricSeq()" data-i18n="calculate">გამოთვლა</button>
+          <output id="geoSeqOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3>Fibonacci</h3>
+          <input id="fibN" type="number" placeholder="რამდენი წევრი?" />
+          <button onclick="calcFibonacci()" data-i18n="generate">გენერაცია</button>
+          <output id="fibOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="series">სერიის ჯამი</h3>
+          <input id="seriesN" type="number" placeholder="n" />
+          <button onclick="calcSeries()" data-i18n="calculate">გამოთვლა</button>
+          <output id="seriesOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- GEOMETRY -->
+    <section class="page" id="geometry">
+      <div class="title">
+        <h2 data-i18n="geometryTitle">გეომეტრია</h2>
+        <p data-i18n="geometryDesc">2D და 3D ფიგურების ფართობი, პერიმეტრი და მოცულობა.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card wide">
+          <h3 data-i18n="shapeCalc">ფიგურის კალკულატორი</h3>
+
+          <select id="geoType" onchange="renderGeoInputs()">
+            <option value="rectangle" data-i18n="rectangle">მართკუთხედი</option>
+            <option value="square" data-i18n="square">კვადრატი</option>
+            <option value="circle" data-i18n="circle">წრე</option>
+            <option value="triangle" data-i18n="triangle">სამკუთხედი</option>
+            <option value="trapezoid" data-i18n="trapezoid">ტრაპეცია</option>
+            <option value="ellipse" data-i18n="ellipse">ელიფსი</option>
+            <option value="cube" data-i18n="cube">კუბი</option>
+            <option value="box" data-i18n="box">მართკუთხა პარალელეპიპედი</option>
+            <option value="cylinder" data-i18n="cylinder">ცილინდრი</option>
+            <option value="sphere" data-i18n="sphere">სფერო</option>
+            <option value="cone" data-i18n="cone">კონუსი</option>
+          </select>
+
+          <div id="geoInputs" class="stack"></div>
+
+          <button onclick="calcGeometry()" data-i18n="calculate">გამოთვლა</button>
+          <output id="geoOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="pythagoras">პითაგორა</h3>
+          <input id="pyA" type="number" placeholder="a" />
+          <input id="pyB" type="number" placeholder="b" />
+          <button onclick="calcPythagoras()" data-i18n="calculate">გამოთვლა</button>
+          <output id="pyOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="polygonAngles">მრავალკუთხედის კუთხეები</h3>
+          <input id="polygonSides" type="number" placeholder="გვერდების რაოდენობა" />
+          <button onclick="calcPolygon()" data-i18n="calculate">გამოთვლა</button>
+          <output id="polygonOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- UNITS -->
+    <section class="page" id="units">
+      <div class="title">
+        <h2 data-i18n="unitConverter">ერთეულების გადამყვანი</h2>
+        <p data-i18n="unitDesc">აირჩიე კატეგორია და გადაიყვანე სხვადასხვა ერთეულებში.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card wide">
+          <h3>Universal Converter</h3>
+
+          <select id="unitType" onchange="loadUnits()">
+            <option value="length" data-i18n="length">სიგრძე</option>
+            <option value="mass" data-i18n="mass">მასა</option>
+            <option value="temperature" data-i18n="temperature">ტემპერატურა</option>
+            <option value="area" data-i18n="area">ფართობი</option>
+            <option value="volume" data-i18n="volume">მოცულობა</option>
+            <option value="speed" data-i18n="speed">სიჩქარე</option>
+            <option value="time" data-i18n="time">დრო</option>
+            <option value="data" data-i18n="data">მონაცემები</option>
+            <option value="energy" data-i18n="energy">ენერგია</option>
+            <option value="pressure" data-i18n="pressure">წნევა</option>
+            <option value="force" data-i18n="force">ძალა</option>
+            <option value="angle" data-i18n="angle">კუთხე</option>
+          </select>
+
+          <input id="unitValue" type="number" placeholder="რაოდენობა" oninput="convertUnit()" />
+
+          <div class="row">
+            <select id="unitFrom" onchange="convertUnit()"></select>
+            <select id="unitTo" onchange="convertUnit()"></select>
+          </div>
+
+          <output id="unitOut">—</output>
+
+          <button onclick="convertToAll()" data-i18n="showAllUnits">ყველა ერთეულში ჩვენება</button>
+          <output id="allUnitsOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- PHYSICS -->
+    <section class="page" id="physics">
+      <div class="title">
+        <h2 data-i18n="physicsTitle">ფიზიკა</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="newtonLaw">ნიუტონის კანონი F = m × a</h3>
+          <input id="forceMass" type="number" placeholder="მასა კგ" />
+          <input id="accel" type="number" placeholder="აჩქარება მ/წმ²" />
+          <button onclick="calcForce()" data-i18n="calculate">გამოთვლა</button>
+          <output id="forceOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="densityCalc">სიმკვრივე ρ = m / V</h3>
+          <input id="densityMass" type="number" placeholder="მასა კგ" />
+          <input id="densityVolume" type="number" placeholder="მოცულობა მ³" />
+          <button onclick="calcDensity()" data-i18n="calculate">გამოთვლა</button>
+          <output id="densityOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="kineticEnergy">კინეტიკური ენერგია</h3>
+          <input id="kinMass" type="number" placeholder="მასა კგ" />
+          <input id="kinSpeed" type="number" placeholder="სიჩქარე მ/წმ" />
+          <button onclick="calcKinetic()" data-i18n="calculate">გამოთვლა</button>
+          <output id="kinOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="ohmLaw">ოჰმის კანონი</h3>
+          <input id="ohmV" type="number" placeholder="ძაბვა V" />
+          <input id="ohmR" type="number" placeholder="წინაღობა Ω" />
+          <button onclick="calcOhm()" data-i18n="calculate">გამოთვლა</button>
+          <output id="ohmOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="page" id="stats">
+      <div class="title">
+        <h2 data-i18n="statsTitle">სტატისტიკა</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card wide">
+          <h3 data-i18n="numberAnalysis">რიცხვების ანალიზი</h3>
+          <textarea id="statNums" placeholder="10, 20, 30, 40"></textarea>
+          <button onclick="calcStats()" data-i18n="analyze">ანალიზი</button>
+          <output id="statsOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="weightedAverage">წონიანი საშუალო</h3>
+          <textarea id="weightedValues" placeholder="მნიშვნელობები: 90, 80, 70"></textarea>
+          <textarea id="weightedWeights" placeholder="წონები: 3, 2, 1"></textarea>
+          <button onclick="calcWeightedAverage()" data-i18n="calculate">გამოთვლა</button>
+          <output id="weightedOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- TRANSLATOR -->
+    <section class="page" id="translator">
+      <div class="title">
+        <h2 data-i18n="translatorTitle">თარგმანი</h2>
+        <p data-i18n="translatorDesc">ჩაშენებული პატარა თარჯიმანი მარტივი სიტყვებისა და ფრაზებისთვის.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card wide">
+          <h3>Mini Translator</h3>
+
+          <div class="row">
+            <select id="fromLang">
+              <option value="ka">ქართული</option>
+              <option value="en">English</option>
+              <option value="ru">Русский</option>
+            </select>
+
+            <select id="toLang">
+              <option value="en">English</option>
+              <option value="ka">ქართული</option>
+              <option value="ru">Русский</option>
+              <option value="de">Deutsch</option>
+              <option value="fr">Français</option>
+              <option value="es">Español</option>
+              <option value="it">Italiano</option>
+              <option value="tr">Türkçe</option>
+            </select>
+          </div>
+
+          <textarea id="translateInput" placeholder="ჩაწერე: გამარჯობა, მადლობა, სკოლა, წყალი, hello..."></textarea>
+
+          <button onclick="translateMini()" data-i18n="translate">თარგმნა</button>
+          <output id="translateOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- TEXT TOOLS -->
+    <section class="page" id="texttools">
+      <div class="title">
+        <h2 data-i18n="textToolsTitle">ტექსტის ხელსაწყოები</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card wide">
+          <h3 data-i18n="textAnalysis">ტექსტის ანალიზი</h3>
+          <textarea id="textInput" placeholder="ჩაწერე ტექსტი"></textarea>
+          <button onclick="analyzeText()" data-i18n="analyze">ანალიზი</button>
+          <output id="textOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3>Case Converter</h3>
+          <textarea id="caseInput" placeholder="Text"></textarea>
+          <button onclick="convertCase('upper')">UPPER</button>
+          <button onclick="convertCase('lower')">lower</button>
+          <button onclick="convertCase('title')">Title Case</button>
+          <output id="caseOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- FINANCE -->
+    <section class="page" id="finance">
+      <div class="title">
+        <h2 data-i18n="financeTitle">ფინანსები</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="discount">ფასდაკლება</h3>
+          <input id="discountPrice" type="number" placeholder="ფასი ₾" />
+          <input id="discountPercent" type="number" placeholder="ფასდაკლება %" />
+          <button onclick="calcDiscount()" data-i18n="calculate">გამოთვლა</button>
+          <output id="discountOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="loan">სესხი</h3>
+          <input id="loanAmount" type="number" placeholder="თანხა ₾" />
+          <input id="loanRate" type="number" placeholder="წლიური %" />
+          <input id="loanMonths" type="number" placeholder="თვეები" />
+          <button onclick="calcLoan()" data-i18n="calculate">გამოთვლა</button>
+          <output id="loanOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="savings">დანაზოგი</h3>
+          <input id="saveStart" type="number" placeholder="საწყისი თანხა ₾" />
+          <input id="saveMonthly" type="number" placeholder="თვეში დამატება ₾" />
+          <input id="saveMonths" type="number" placeholder="თვეები" />
+          <button onclick="calcSavings()" data-i18n="calculate">გამოთვლა</button>
+          <output id="saveOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="profitLoss">მოგება / ზარალი</h3>
+          <input id="buyPrice" type="number" placeholder="თვითღირებულება ₾" />
+          <input id="sellPrice" type="number" placeholder="გაყიდვის ფასი ₾" />
+          <button onclick="calcProfit()" data-i18n="calculate">გამოთვლა</button>
+          <output id="profitOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOME -->
+    <section class="page" id="home">
+      <div class="title">
+        <h2 data-i18n="homeCostsTitle">ბინის ხარჯები</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card wide">
+          <h3 data-i18n="monthlyHome">თვიური ხარჯი</h3>
+
+          <div class="row">
+            <input id="rent" type="number" placeholder="ქირა ₾" />
+            <input id="electricity" type="number" placeholder="დენი ₾" />
+          </div>
+
+          <div class="row">
+            <input id="gas" type="number" placeholder="გაზი ₾" />
+            <input id="water" type="number" placeholder="წყალი ₾" />
+          </div>
+
+          <div class="row">
+            <input id="internet" type="number" placeholder="ინტერნეტი ₾" />
+            <input id="food" type="number" placeholder="საკვები ₾" />
+          </div>
+
+          <div class="row">
+            <input id="otherHome" type="number" placeholder="სხვა ₾" />
+            <input id="peopleHome" type="number" placeholder="რამდენ კაცზე" value="1" />
+          </div>
+
+          <button onclick="calcHomeExpenses()" data-i18n="calculate">გამოთვლა</button>
+          <output id="homeOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="splitBill">გადასახადის გაყოფა</h3>
+          <input id="billTotal" type="number" placeholder="სრული თანხა ₾" />
+          <input id="billPeople" type="number" placeholder="კაცების რაოდენობა" />
+          <input id="tipPercent" type="number" placeholder="დამატებითი %" />
+          <button onclick="splitBill()" data-i18n="split">გაყოფა</button>
+          <output id="billOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONSTRUCTION -->
+    <section class="page" id="construction">
+      <div class="title">
+        <h2 data-i18n="constructionTitle">მშენებლობა / რემონტი</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="materialsLabor">მასალა + ხელობა</h3>
+          <input id="roomArea" type="number" placeholder="ფართობი მ²" />
+          <input id="materialPerM" type="number" placeholder="მასალა 1მ² ₾" />
+          <input id="workPerM" type="number" placeholder="ხელობა 1მ² ₾" />
+          <input id="wastePercent" type="number" placeholder="მარაგი %" value="10" />
+          <button onclick="calcRenovation()" data-i18n="calculate">გამოთვლა</button>
+          <output id="renoOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="paint">საღებავი</h3>
+          <input id="paintArea" type="number" placeholder="კედელი მ²" />
+          <input id="paintCover" type="number" placeholder="1ლ ფარავს მ²" value="8" />
+          <input id="paintCoats" type="number" placeholder="ფენები" value="2" />
+          <input id="paintPrice" type="number" placeholder="1ლ ფასი ₾" />
+          <button onclick="calcPaint()" data-i18n="calculate">გამოთვლა</button>
+          <output id="paintOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="tiles">ფილები</h3>
+          <input id="tileArea" type="number" placeholder="ფართობი მ²" />
+          <input id="tileOneArea" type="number" placeholder="ერთი ფილა მ²" />
+          <input id="tileWaste" type="number" placeholder="მარაგი %" value="10" />
+          <button onclick="calcTiles()" data-i18n="calculate">გამოთვლა</button>
+          <output id="tilesOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="concrete">ბეტონი</h3>
+          <input id="concL" type="number" placeholder="სიგრძე მ" />
+          <input id="concW" type="number" placeholder="სიგანე მ" />
+          <input id="concH" type="number" placeholder="სიმაღლე/სისქე მ" />
+          <button onclick="calcConcrete()" data-i18n="calculate">გამოთვლა</button>
+          <output id="concreteOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- EVENT -->
+    <section class="page" id="event">
+      <div class="title">
+        <h2 data-i18n="eventTitle">ღონისძიება / სასმელები</h2>
+        <p data-i18n="eventDesc">წყალი, წვენი, ლიმონათი, ნარევები და კონცენტრაცია.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="drinkAmount">სასმელების რაოდენობა</h3>
+          <input id="guestCount" type="number" placeholder="სტუმრები" />
+          <input id="drinkPerGuest" type="number" placeholder="ლიტრი ერთ სტუმარზე" value="1.2" />
+          <input id="bottleSize" type="number" placeholder="ბოთლის ზომა ლ" value="1.5" />
+          <input id="bottlePrice" type="number" placeholder="ბოთლის ფასი ₾" />
+          <button onclick="calcBeverages()" data-i18n="calculate">გამოთვლა</button>
+          <output id="bevOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="mixture">ნარევის კონცენტრაცია</h3>
+          <input id="mixA" type="number" placeholder="სითხე A ლიტრი" />
+          <input id="concA" type="number" placeholder="A კონცენტრაცია %" />
+          <input id="mixB" type="number" placeholder="სითხე B ლიტრი" />
+          <input id="concB" type="number" placeholder="B კონცენტრაცია %" />
+          <button onclick="calcMixture()" data-i18n="calculate">გამოთვლა</button>
+          <output id="mixOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="syrupWater">სიროფი + წყალი</h3>
+          <input id="syrupLiters" type="number" placeholder="სიროფი ლიტრი" />
+          <input id="ratioWater" type="number" placeholder="წყლის ნაწილი" value="5" />
+          <button onclick="calcSyrup()" data-i18n="calculate">გამოთვლა</button>
+          <output id="syrupOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- COMPUTER -->
+    <section class="page" id="computer">
+      <div class="title">
+        <h2 data-i18n="computerTitle">კომპიუტერი / ინტერნეტი</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="downloadTime">ჩამოტვირთვის დრო</h3>
+          <input id="fileSize" type="number" placeholder="ფაილის ზომა" />
+          <select id="fileSizeUnit">
+            <option value="MB">MB</option>
+            <option value="GB">GB</option>
+            <option value="TB">TB</option>
+          </select>
+          <input id="netSpeed" type="number" placeholder="სიჩქარე" />
+          <select id="netSpeedUnit">
+            <option value="Mbps">Mbps</option>
+            <option value="MBps">MB/s</option>
+            <option value="Gbps">Gbps</option>
+          </select>
+          <button onclick="calcDownload()" data-i18n="calculate">გამოთვლა</button>
+          <output id="downloadOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- DAILY -->
+    <section class="page" id="daily">
+      <div class="title">
+        <h2 data-i18n="dailyTitle">ყოველდღიური</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="waterBottles">წყლის ბოთლები</h3>
+          <input id="waterLiters" type="number" placeholder="ლიტრი დღეში" />
+          <input id="waterBottle" type="number" placeholder="ბოთლის ზომა" value="0.5" />
+          <button onclick="calcWaterBottles()" data-i18n="calculate">გამოთვლა</button>
+          <output id="waterBottleOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="stepsKm">ნაბიჯები → კმ</h3>
+          <input id="steps" type="number" placeholder="ნაბიჯები" />
+          <input id="stepLength" type="number" placeholder="ერთი ნაბიჯი მეტრში" value="0.7" />
+          <button onclick="calcSteps()" data-i18n="calculate">გამოთვლა</button>
+          <output id="stepsOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- TIME -->
+    <section class="page" id="timeplan">
+      <div class="title">
+        <h2 data-i18n="timeTitle">დრო</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Pomodoro</h3>
+          <input id="sessions" type="number" placeholder="სესიები" value="4" />
+          <input id="focusMin" type="number" placeholder="ფოკუსი წუთებში" value="25" />
+          <input id="breakMin" type="number" placeholder="შესვენება" value="5" />
+          <button onclick="calcPomodoro()" data-i18n="calculate">გამოთვლა</button>
+          <output id="pomoOut">—</output>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="taskTime">დავალებების დრო</h3>
+          <input id="taskCount" type="number" placeholder="დავალებები" />
+          <input id="minPerTask" type="number" placeholder="წუთი ერთზე" />
+          <button onclick="calcTaskTime()" data-i18n="calculate">გამოთვლა</button>
+          <output id="taskOut">—</output>
+        </article>
+      </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="page" id="history">
+      <div class="title">
+        <h2 data-i18n="historyTitle">ისტორია</h2>
+      </div>
+
+      <article class="card wide">
+        <div class="row">
+          <button onclick="renderHistory()" data-i18n="refresh">განახლება</button>
+          <button onclick="clearHistory()" data-i18n="delete">წაშლა</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

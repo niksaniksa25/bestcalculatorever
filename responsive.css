@@ -1,0 +1,398 @@
+/* responsive.css — UniversalCalc Pro responsive design */
+
+@media (max-width: 1200px) {
+  .main {
+    width: min(100% - 24px, 1080px);
+  }
+
+  .hero-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 18px;
+  }
+
+  .intro-card h2,
+  .title h2 {
+    font-size: clamp(28px, 4.5vw, 50px);
+  }
+
+  .keypad button {
+    min-height: 50px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 920px) {
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(6, 17, 31, 0.72);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  body.light .topbar {
+    background: rgba(238, 245, 255, 0.78);
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    align-items: start;
+  }
+
+  .intro-card {
+    padding: 22px;
+  }
+
+  .mini-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card.wide {
+    grid-column: auto;
+  }
+
+  .drawer {
+    width: 330px;
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand h1 {
+    font-size: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .brand p {
+    display: none;
+  }
+
+  .logo {
+    width: 46px;
+    height: 46px;
+    border-radius: 16px;
+    font-size: 25px;
+  }
+
+  .icon-btn,
+  .pill {
+    min-width: 44px;
+    height: 44px;
+  }
+
+  .top-actions {
+    gap: 6px;
+  }
+
+  .pill {
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  .translate-panel {
+    right: 0;
+    width: 170px;
+  }
+
+  .main {
+    width: calc(100% - 16px);
+    margin-bottom: 24px;
+  }
+
+  .intro-card,
+  .calculator,
+  .card {
+    border-radius: 20px;
+  }
+
+  .intro-card h2,
+  .title h2 {
+    font-size: 32px;
+  }
+
+  .title {
+    padding: 18px 2px 12px;
+  }
+
+  .calculator {
+    padding: 12px;
+  }
+
+  .display {
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  #sciInput {
+    font-size: 16px;
+  }
+
+  #sciResult {
+    min-height: 58px;
+    font-size: 34px;
+  }
+
+  .mode-row {
+    gap: 6px;
+  }
+
+  .chip {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .keypad {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .keypad button {
+    min-height: 48px;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 14px;
+  }
+
+  .row,
+  .row.three {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 16px;
+    gap: 11px;
+  }
+
+  .card h3 {
+    font-size: 19px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  output {
+    font-size: 14px;
+    max-height: 260px;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .topbar {
+    align-items: center;
+  }
+
+  .top-actions {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 12;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .top-actions .pill {
+    box-shadow: var(--shadow);
+    background: var(--card);
+  }
+
+  .translate-box {
+    order: -1;
+  }
+
+  .translate-panel {
+    top: auto;
+    bottom: calc(100% + 10px);
+    right: 0;
+  }
+
+  .brand h1 {
+    max-width: 170px;
+  }
+
+  .drawer {
+    width: min(92vw, 340px);
+    padding: 14px;
+  }
+
+  .drawer-head strong {
+    font-size: 20px;
+  }
+
+  .nav,
+  summary {
+    font-size: 14px;
+  }
+
+  .drawer-note {
+    font-size: 13px;
+  }
+
+  .intro-card {
+    padding: 18px;
+  }
+
+  .intro-card h2,
+  .title h2 {
+    font-size: 28px;
+  }
+
+  .intro-card p,
+  .title p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .mini-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .mini-stats div {
+    padding: 12px;
+  }
+
+  .mini-stats strong {
+    font-size: 22px;
+  }
+
+  .keypad {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .keypad button {
+    min-height: 44px;
+    font-size: 13px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  button {
+    padding: 11px 12px;
+  }
+
+  textarea {
+    min-height: 82px;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand h1 {
+    max-width: 135px;
+    font-size: 19px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .icon-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 22px;
+  }
+
+  .keypad {
+    gap: 6px;
+  }
+
+  .keypad button {
+    min-height: 40px;
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  #sciResult {
+    font-size: 28px;
+  }
+
+  .intro-card h2,
+  .title h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .drawer {
+    padding-bottom: 60px;
+  }
+
+  .hero-grid {
+    min-height: auto;
+  }
+
+  #sciResult {
+    min-height: 46px;
+  }
+
+  .keypad button {
+    min-height: 38px;
+  }
+}
+
+@media print {
+  .topbar,
+  .drawer,
+  .overlay,
+  .top-actions {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .bg {
+    display: none;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .page {
+    display: block !important;
+    page-break-after: always;
+  }
+
+  .card,
+  .calculator,
+  .intro-card {
+    box-shadow: none;
+    border: 1px solid #aaa;
+    background: white;
+    color: black;
+  }
+}
