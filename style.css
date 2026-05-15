@@ -564,3 +564,10 @@ output {
   display: block;
   margin-bottom: 5px;
 }
+.seo-text {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
