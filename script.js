@@ -1181,4 +1181,64 @@ function calcPomodoro() {
 function calcTaskTime() {
   const mins = val("taskCount") * val("minPerTask");
   $("taskOut").textContent = `${fmt(mins)} წუთი\n${fmt(mins / 60)} საათი`;
+}/* Extra features: modes, themes, PWA */
+
+function openPageById(pageId) {
+  document.querySelectorAll(".nav").forEach((x) => {
+    x.classList.toggle("active", x.dataset.page === pageId);
+  });
+
+  document.querySelectorAll(".page").forEach((x) => {
+    x.classList.remove("active");
+  });
+
+  const page = document.getElementById(pageId);
+  if (page) {
+    page.classList.add("active");
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openMode(mode) {
+  if (mode === "student") {
+    openPageById("formulas");
+  }
+
+  if (mode === "business") {
+    openPageById("finance");
+  }
+
+  if (mode === "home") {
+    openPageById("home");
+  }
+}
+
+function setAccent(color) {
+  document.body.classList.remove(
+    "accent-blue",
+    "accent-purple",
+    "accent-green",
+    "accent-gold",
+    "accent-red"
+  );
+
+  document.body.classList.add("accent-" + color);
+  localStorage.setItem("calculatorAccent", color);
+}
+
+const savedAccent = localStorage.getItem("calculatorAccent");
+if (savedAccent) {
+  setAccent(savedAccent);
+}
+
+/* PWA register */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .catch(() => {
+        console.log("Service worker not registered");
+      });
+  });
 }

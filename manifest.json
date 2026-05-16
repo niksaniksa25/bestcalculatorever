@@ -1,0 +1,11 @@
+{
+  "name": "calculator — Ultra Calculator",
+  "short_name": "calculator",
+  "description": "Scientific calculator, unit converter, math, geometry, physics, finance and practical tools.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#38bdf8",
+  "orientation": "portrait-primary",
+  "icons": []
+}
