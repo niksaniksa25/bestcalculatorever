@@ -570,4 +570,70 @@ output {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}/* ===== MOBILE TRANSLATE FIX — put at the VERY END of style.css ===== */
+
+@media (max-width: 700px) {
+  .top-actions {
+    display: flex !important;
+    position: fixed !important;
+    right: 12px !important;
+    bottom: 12px !important;
+    z-index: 99999 !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 8px !important;
+    pointer-events: auto !important;
+  }
+
+  .translate-box {
+    display: block !important;
+    position: relative !important;
+    z-index: 100000 !important;
+  }
+
+  #translateBtn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 132px !important;
+    height: 46px !important;
+    padding: 10px 14px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, #38bdf8, #8b5cf6) !important;
+    color: white !important;
+    font-weight: 800 !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35) !important;
+  }
+
+  #translatePanel {
+    display: none !important;
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 56px !important;
+    top: auto !important;
+    left: auto !important;
+    width: 190px !important;
+    padding: 10px !important;
+    border-radius: 20px !important;
+    background: var(--card) !important;
+    border: 1px solid var(--line) !important;
+    box-shadow: var(--shadow) !important;
+    z-index: 100001 !important;
+  }
+
+  #translatePanel.open {
+    display: grid !important;
+    gap: 8px !important;
+  }
+
+  #translatePanel button {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  #themeBtn,
+  #clearBtn {
+    display: none !important;
+  }
 }

@@ -112,11 +112,10 @@
       <button class="nav" data-page="stats" data-i18n="stats">სტატისტიკა</button>
     </details>
 
-    <details>
-      <summary data-i18n="languageText">🌍 ტექსტი / ენები</summary>
-      <button class="nav" data-page="translator" data-i18n="translator">თარგმანი</button>
-      <button class="nav" data-page="texttools" data-i18n="textTools">ტექსტის ხელსაწყოები</button>
-    </details>
+   <details>
+  <summary data-i18n="languageText">🌍 ტექსტი / ენები</summary>
+  <button class="nav" data-page="texttools" data-i18n="textTools">ტექსტის ხელსაწყოები</button>
+</details>
 
     <details>
       <summary data-i18n="special">🧰 სპეციალური</summary>
@@ -483,7 +482,7 @@
         </article>
 
         <article class="card">
-          <h3 data-i18n="ohmLaw">ოჰმის კანონი</h3>
+          <h3 data-i18n="ohmLaw">ომის კანონი</h3>
           <input id="ohmV" type="number" placeholder="ძაბვა V" />
           <input id="ohmR" type="number" placeholder="წინაღობა Ω" />
           <button onclick="calcOhm()" data-i18n="calculate">გამოთვლა</button>
@@ -516,43 +515,7 @@
       </div>
     </section>
 
-    <!-- TRANSLATOR -->
-    <section class="page" id="translator">
-      <div class="title">
-        <h2 data-i18n="translatorTitle">თარგმანი</h2>
-        <p data-i18n="translatorDesc">ჩაშენებული პატარა თარჯიმანი მარტივი სიტყვებისა და ფრაზებისთვის.</p>
-      </div>
-
-      <div class="grid">
-        <article class="card wide">
-          <h3>Mini Translator</h3>
-
-          <div class="row">
-            <select id="fromLang">
-              <option value="ka">ქართული</option>
-              <option value="en">English</option>
-              <option value="ru">Русский</option>
-            </select>
-
-            <select id="toLang">
-              <option value="en">English</option>
-              <option value="ka">ქართული</option>
-              <option value="ru">Русский</option>
-              <option value="de">Deutsch</option>
-              <option value="fr">Français</option>
-              <option value="es">Español</option>
-              <option value="it">Italiano</option>
-              <option value="tr">Türkçe</option>
-            </select>
-          </div>
-
-          <textarea id="translateInput" placeholder="ჩაწერე: გამარჯობა, მადლობა, სკოლა, წყალი, hello..."></textarea>
-
-          <button onclick="translateMini()" data-i18n="translate">თარგმნა</button>
-          <output id="translateOut">—</output>
-        </article>
-      </div>
-    </section>
+    
 
     <!-- TEXT TOOLS -->
     <section class="page" id="texttools">
